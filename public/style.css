@@ -1,0 +1,267 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #ddd;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+  }
+  
+  #app {
+    display: grid;
+    grid-auto-rows: minmax(0px, auto);
+    grid-template-columns: minmax(0px, 1fr) repeat(6, minmax(0, 175px)) minmax(
+        0px,
+        1fr
+      );
+  }
+  
+  .header-flex {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #eba95d;
+    align-items: center;
+  }
+
+  .hi-name {
+    margin-right: 0.25em;
+  }
+
+  .nav-flex {
+    display: flex;
+    color: white;
+  }
+  
+  h1 {
+    color: white;
+    margin-left: 2em;
+  }
+  
+  .new-button {
+    padding: 1em;
+    margin-right: 2em;
+    border-radius: 50px;
+    color: white;
+    background-color: #eba95d;
+    border: white 2px solid;
+  }
+
+  .logout-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    margin-right: 3em;
+  }
+
+  
+  .new-button:hover {
+    background-color: white;
+    color: #eba95d;
+  }
+  
+  #home-hero {
+    background-color: gray;
+    background-image: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.5)
+      ),
+      url(images/gifts.jpg);
+    height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #other {
+    background-color: gray;
+    background-image: linear-gradient(
+        to left,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0.5)
+      ),
+      url(images/gifts.jpg);
+    height: 900px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .box {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 80%;
+    padding: 2em 3em 2em 3em;
+    border-radius: 20px;
+  }
+  
+  .other-box {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    height: 50%;
+    padding: 2em 3em 2em 3em;
+    border-radius: 20px;
+  }
+  
+  .add-button {
+    background-color: #eba95d;
+    color: white;
+    border-radius: 50px;
+    border: 1px solid #eba95d;
+    margin-top: 1em;
+    padding: 0.5em 0em 0.5em 0em;
+  }
+  
+  .add-button:hover {
+    background-color: white;
+    color: #eba95d;
+  }
+  
+  input {
+    border-radius: 100px;
+    border: 1px solid black;
+    padding: 0.25em 0em 0.25em 1em;
+  }
+  
+  main {
+    grid-column: 2 / 8;
+    grid-row: 3 / 4;
+  }
+  
+  .search-bar {
+    width: 100%;
+    padding: 0.5em 0em 0.5em 1em;
+    border-radius: 100px;
+    border: 1px solid black;
+    margin-top: 2em;
+  }
+
+  .loginError {
+    color: red;
+  }
+  
+  .errors {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    font-size: 0.75em;
+  }
+  
+  ul li {
+    list-style-type: none;
+  }
+  
+  .card {
+    background-color: white;
+    margin-top: 2em;
+    margin-right: 2.75em;
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+  }
+  
+  .card-other {
+    background-color: rgb(247, 247, 247);
+    margin-top: 2em;
+    margin-right: 2.75em;
+    padding: 2em;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .name {
+    font-size: 2em;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .delete-button {
+    height: 50%;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .delete-button:hover {
+    color: #eba95d;
+  }
+  
+  .edit-gift {
+    background-color: #eba95d;
+    color: white;
+    border: 1px solid #eba95d;
+    border-radius: 30px;
+    padding: 0.5em;
+  }
+  
+  .edit-gift:hover {
+    background-color: white;
+    color: #eba95d;
+  }
+  
+  footer {
+    background-color: #eba95d;
+    grid-column: 1 / -1;
+    height: 4em;
+    color: white;
+    margin-top: 4em;
+    text-align: center;
+  }
+  
+  .purchased {
+    text-decoration: line-through;
+  }
+  
+  .delete-purchased-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .input-flex {
+    display: flex;
+    flex-direction: column;
+  }
+  @media only screen and (max-width: 1200px) {
+    .box {
+      width: 50%;
+    }
+  }
+  
+  @media only screen and (max-width: 700px) {
+    .box {
+      width: 90%;
+    }
+  }
+  

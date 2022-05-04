@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>Gift Ideas</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Everything managed by vue goes in this div -->
+      <div class="header-flex">
+        <header><h1>Find My Gifts</h1></header>
+        <div class="nav-flex">
+          <p v-if="loggedIn" class="hi-name"> Hi, {{ user.firstName }}</p>
+          <button class="new-button" @click="newGift" v-if="newGiftButton">
+            add new
+          </button>
+          <button class="logout-button" @click="logoutUser" v-if="loggedIn">logout</button>
+        </div>
+      </div>
+      <div id="other" v-if="!loggedIn">
+        <div class="other-box" v-if="login == true">
+          <h2>login</h2>
+          <div v-if="userError" class="loginError">an error occured while logging in. try again</div>
+          email<input type="text" v-model="lEmailInput"/> 
+          password<input type="password" v-model="lPassInput"/>
+          <button class="add-button" @click="loginUser">login</button>
+          <button class="add-button" @click="signUpUser">sign up</button>
+
+        </div>
+        <div class="other-box" v-if="signup">
+          <h2>sign up</h2>
+          <div v-if="!newUserIsValid" class="errors">
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+          </div>
+          <div v-if="uniqueEmail" class="loginError">email already in use.</div>
+          first name<input type="text" v-model="sFirstNameInput" v-bind:class="{ invalid: firstNameIsInvalid }"/> 
+          email<input type="text" v-model="sEmailInput" v-bind:class="{ invalid: emailIsInvalid }"/> 
+          password<input type="password" v-model="sPassInput" v-bind:class="{ invalid: passwordIsInvalid }"/>
+          <button class="add-button" @click="officialSignUp()">sign up</button>
+
+          <button class="add-button" @click="signUpToLogin">login</button>
+          
+        </div>
+      </div>
+      <div id="home-hero" v-if="loggedIn == true">
+        <div class="box" v-if="addNew">
+          <h2>add a gift</h2>
+          <div v-if="!newGiftIsValid" class="errors">
+            <!-- there was a problem saving your gifts -->
+            <ul>
+              <li v-for="error in errors">{{ error }}</li>
+            </ul>
+          </div>
+          person<input
+            type="text"
+            v-model="inputPerson"
+            v-bind:class="{ invalid: personIsInvalid }"
+          />
+
+          idea<input
+            type="text"
+            v-model="inputIdea"
+            v-bind:class="{ invalid: ideaIsInvalid }"
+          />
+
+          price<input
+            type="number"
+            min="0"
+            v-model="inputPrice"
+            v-bind:class="{ invalid: priceIsInvalid }"
+          />
+
+          birthday<input type="date" v-model="inputEvent" />
+          <button @click="addGift()" class="add-button" v-if="addButton">
+            add
+          </button>
+          <button @click="saveGift(gift)" class="add-button" v-if="editButton">
+            save
+          </button>
+          
+        </div>
+      </div>
+      <main v-if="loggedIn == true">
+        <input
+          type="text"
+          v-model="search"
+          class="search-bar"
+          placeholder="Search a name to pull up gifts..."
+        />
+        <h2 class="gifts-h2">Gifts Ideas</h2>
+
+        <ul>
+          <li v-for="gift in filteredSearches">
+            <div class="card">
+              <div>
+                <div :class="{ purchased: gift.purchased }">
+                  <div class="name">
+                    <strong> {{ gift.name }}</strong>
+                  </div>
+                  <br />
+                  idea: {{ gift.idea }}<br />
+                  price: ${{ gift.price }}<br />
+
+                  Birthday: {{ gift.event}}
+                </div>
+                <!-- <button @click="completed(gift)">test</button> -->
+                <button @click="editGift(gift)" class="edit-gift">edit</button>
+              </div>
+              <div class="delete-purchased-flex">
+                <button @click="deleteGift(gift._id)" class="delete-button">
+                  X
+                </button>
+                <input
+                  type="checkbox"
+                  v-model="gift.purchased"
+                  @change="giftPurchased(gift)"
+                />
+              </div>
+            </div>
+            <!-- </div> -->
+          </li>
+        </ul>
+      </main>
+      <footer v-if="loggedIn">footer</footer>
+      <!-- end of vue -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
